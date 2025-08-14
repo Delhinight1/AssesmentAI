@@ -30,6 +30,42 @@ An intelligent digital assessment platform that uses AI to generate unique quest
 - **Database**: In-memory storage (easily replaceable with PostgreSQL)
 - **Routing**: Wouter for client-side routing
 - **State Management**: TanStack Query for server state
+- flowchart TD
+    A[Student Login/ID Input] --> B[Select Lab Topic & Parameters]
+    B --> C{Check Database for Existing Questions}
+    C --> D[Fetch All Previous Questions]
+    D --> E[AI Model - Gemini API]
+    E --> F[Generate Multiple Question Variations]
+    F --> G{Validate Question Quality}
+    G -->|Pass| H[Check for Uniqueness vs Database]
+    G -->|Fail| E
+    H -->|Unique| I[Store in Supabase Database]
+    H -->|Duplicate| E
+    I --> J[Assign Unique Question to Student]
+    J --> K[Display Question to Student]
+    K --> L[Student Submits Answer]
+    L --> M[Store Answer in Database]
+    M --> N[Instructor Dashboard]
+    N --> O[Automated Evaluation System]
+    O --> P[Generate Fair Marks]
+    
+    subgraph "Database Layer"
+        Q[(Supabase Database)]
+        Q --> R[Questions Table]
+        Q --> S[Students Table] 
+        Q --> T[Answers Table]
+        Q --> U[Evaluations Table]
+    end
+    
+    subgraph "AI Processing"
+        E --> V[Question Generation]
+        V --> W[Difficulty Calibration]
+        W --> X[Equivalence Validation]
+    end
+    
+    I --> Q
+    M --> Q
+    D --> Q
 
 ## Quick Start
 
