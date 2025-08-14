@@ -14,10 +14,14 @@ export const getCurrentUser = (): AuthUser | null => {
 
 export const setCurrentUser = (user: AuthUser) => {
   localStorage.setItem('user', JSON.stringify(user));
+  // Trigger custom event to notify components of auth change
+  window.dispatchEvent(new Event('auth-change'));
 };
 
 export const clearCurrentUser = () => {
   localStorage.removeItem('user');
+  // Trigger custom event to notify components of auth change
+  window.dispatchEvent(new Event('auth-change'));
 };
 
 export const isAuthenticated = (): boolean => {

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -10,12 +11,32 @@ import StudentDashboard from "./pages/student-dashboard";
 import CreateExam from "./pages/create-exam";
 import TakeExam from "./pages/take-exam";
 import ExamResults from "./pages/exam-results";
-import { isAuthenticated, isInstructor, isStudent } from "@/lib/auth";
+import { getCurrentUser, type AuthUser } from "@/lib/auth";
 
 function Router() {
-  const authenticated = isAuthenticated();
-  const instructor = isInstructor();
-  const student = isStudent();
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(getCurrentUser());
+
+  // Listen for authentication changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setCurrentUser(getCurrentUser());
+    };
+
+    // Listen for storage changes from other tabs/windows
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Listen for custom auth events (for same-tab changes)
+    window.addEventListener('auth-change', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('auth-change', handleStorageChange);
+    };
+  }, []);
+
+  const authenticated = currentUser !== null;
+  const instructor = currentUser?.role === 'instructor';
+  const student = currentUser?.role === 'student';
 
   return (
     <Switch>
