@@ -1,0 +1,1754 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAssess - AI-Powered Digital Assessment Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#3B82F6',
+                        'secondary': '#6366F1',
+                        'instructor': '#6366F1',
+                        'student': '#10B981',
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-50 font-inter">
+    
+    <!-- Landing/Login Section -->
+    <div id="landing-section" class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+        <nav class="bg-white shadow-sm border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-sm"></i>
+                        </div>
+                        <span class="text-xl font-bold text-slate-900">EduAssess</span>
+                    </div>
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-5xl font-bold text-slate-900 mb-6 leading-tight">
+                    AI-Powered Digital Assessment Platform
+                </h1>
+                <p class="text-xl text-slate-600 mb-8 leading-relaxed">
+                    Reduce paper waste and ensure academic integrity with unique, AI-generated questions for every student. Create, manage, and grade assessments with intelligent automation.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                    <button class="bg-instructor text-white px-8 py-4 rounded-xl font-semibold hover:bg-indigo-600 transition-colors flex items-center justify-center space-x-2">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Continue as Instructor</span>
+                    </button>
+                    <button class="bg-student text-white px-8 py-4 rounded-xl font-semibold hover:bg-emerald-600 transition-colors flex items-center justify-center space-x-2">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Continue as Student</span>
+                    </button>
+                </div>
+
+                <!-- Feature Highlights -->
+                <div class="grid md:grid-cols-3 gap-8 mt-20">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-robot text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-3">AI Question Generation</h3>
+                        <p class="text-slate-600">Generate unique questions for each student while maintaining equivalent difficulty and academic integrity.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-leaf text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-3">Paper-Free Assessments</h3>
+                        <p class="text-slate-600">Completely digital platform that eliminates paper waste and streamlines the assessment process.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-indigo-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-900 mb-3">Smart Analytics</h3>
+                        <p class="text-slate-600">Track student performance and get insights into learning patterns and assessment effectiveness.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructor Dashboard -->
+    <div id="instructor-dashboard" class="min-h-screen bg-slate-50 hidden">
+        <!-- Instructor Navigation -->
+        <nav class="bg-white shadow-sm border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-8">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-instructor rounded-lg flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-white text-sm"></i>
+                            </div>
+                            <span class="text-xl font-bold text-slate-900">EduAssess</span>
+                        </div>
+                        <div class="hidden md:flex space-x-6">
+                            <a href="#" class="text-instructor font-medium border-b-2 border-instructor pb-4">Dashboard</a>
+                            <a href="#" class="text-slate-600 hover:text-slate-900 pb-4">Exams</a>
+                            <a href="#" class="text-slate-600 hover:text-slate-900 pb-4">Students</a>
+                            <a href="#" class="text-slate-600 hover:text-slate-900 pb-4">Analytics</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-instructor rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-xs"></i>
+                            </div>
+                            <span class="text-sm font-medium text-slate-700" data-bind="instructor.name">Prof. Smith</span>
+                        </div>
+                        <button class="text-slate-400 hover:text-slate-600">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Welcome Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-slate-900 mb-2">Welcome back, <span data-bind="instructor.name">Prof. Smith</span></h1>
+                <p class="text-slate-600">Manage your exams and monitor student progress.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-slate-600">Active Exams</p>
+                            <p class="text-3xl font-bold text-slate-900" data-bind="stats.activeExams">3</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-clipboard-list text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-slate-600">Total Students</p>
+                            <p class="text-3xl font-bold text-slate-900" data-bind="stats.totalStudents">127</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-users text-green-600"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-slate-600">Submissions</p>
+                            <p class="text-3xl font-bold text-slate-900" data-bind="stats.submissions">45</p>
+                        </div>
+                        <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-paper-plane text-amber-600"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-slate-600">Avg Score</p>
+                            <p class="text-3xl font-bold text-slate-900" data-bind="stats.avgScore">84%</p>
+                        </div>
+                        <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-chart-line text-indigo-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Recent Exams -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-100">
+                        <div class="p-6 border-b border-slate-100">
+                            <div class="flex items-center justify-between">
+                                <h2 class="text-xl font-semibold text-slate-900">Recent Exams</h2>
+                                <button class="bg-instructor text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors flex items-center space-x-2">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Create Exam</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="divide-y divide-slate-100">
+                            <!-- @MAP: exams.map(exam => ( -->
+                            <div class="p-6 hover:bg-slate-50 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-slate-900 mb-1" data-bind="exam.title">Physics Midterm - Newton's Laws</h3>
+                                        <div class="flex items-center space-x-4 text-sm text-slate-600">
+                                            <span data-bind="exam.subject">Physics</span>
+                                            <span>•</span>
+                                            <span data-bind="exam.questions">5 questions</span>
+                                            <span>•</span>
+                                            <span data-bind="exam.students">23 students</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 mt-2">
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Active</span>
+                                            <span class="text-xs text-slate-500" data-bind="exam.created">Created 2 days ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100">
+                                            <i class="fas fa-chart-bar"></i>
+                                        </button>
+                                        <button class="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-6 hover:bg-slate-50 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-slate-900 mb-1" data-bind="exam.title">Mathematics Quiz - Algebra</h3>
+                                        <div class="flex items-center space-x-4 text-sm text-slate-600">
+                                            <span data-bind="exam.subject">Mathematics</span>
+                                            <span>•</span>
+                                            <span data-bind="exam.questions">8 questions</span>
+                                            <span>•</span>
+                                            <span data-bind="exam.students">31 students</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2 mt-2">
+                                            <span class="px-2 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-medium">Pending</span>
+                                            <span class="text-xs text-slate-500" data-bind="exam.created">Created 1 week ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100">
+                                            <i class="fas fa-chart-bar"></i>
+                                        </button>
+                                        <button class="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
+                        <div class="space-y-3">
+                            <button class="w-full text-left p-3 rounded-lg hover:bg-slate-50 transition-colors flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-plus text-blue-600 text-sm"></i>
+                                </div>
+                                <span class="font-medium text-slate-900">Create New Exam</span>
+                            </button>
+                            <button class="w-full text-left p-3 rounded-lg hover:bg-slate-50 transition-colors flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-users text-green-600 text-sm"></i>
+                                </div>
+                                <span class="font-medium text-slate-900">Manage Students</span>
+                            </button>
+                            <button class="w-full text-left p-3 rounded-lg hover:bg-slate-50 transition-colors flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-bar text-purple-600 text-sm"></i>
+                                </div>
+                                <span class="font-medium text-slate-900">View Analytics</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Recent Activity</h3>
+                        <div class="space-y-4">
+                            <!-- @MAP: activities.map(activity => ( -->
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-slate-900" data-bind="activity.message">Sarah Johnson submitted Physics Midterm</p>
+                                    <p class="text-xs text-slate-500" data-bind="activity.time">2 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-slate-900" data-bind="activity.message">New exam "Chemistry Lab Report" created</p>
+                                    <p class="text-xs text-slate-500" data-bind="activity.time">1 hour ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-slate-900" data-bind="activity.message">Mike Chen started taking Mathematics Quiz</p>
+                                    <p class="text-xs text-slate-500" data-bind="activity.time">3 hours ago</p>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exam Creation Form -->
+    <div id="exam-creation" class="min-h-screen bg-slate-50 hidden">
+        <nav class="bg-white shadow-sm border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <button class="text-slate-400 hover:text-slate-600">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <h1 class="text-xl font-semibold text-slate-900">Create New Exam</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-slate-600 hover:text-slate-800 px-4 py-2 rounded-lg">Cancel</button>
+                        <button class="bg-instructor text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition-colors" data-event="click:handleSaveExam">Save Exam</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- @COMPONENT: ExamCreationForm [title, subject, instructions, templateQuestions] -->
+            <form class="space-y-8">
+                <!-- Basic Information -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+                    <h2 class="text-lg font-semibold text-slate-900 mb-6">Exam Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Exam Title</label>
+                            <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-instructor focus:border-transparent" placeholder="e.g., Physics Midterm - Newton's Laws" data-bind="exam.title">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Subject</label>
+                            <select class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-instructor focus:border-transparent" data-bind="exam.subject">
+                                <option>Select Subject</option>
+                                <option>Physics</option>
+                                <option>Mathematics</option>
+                                <option>Chemistry</option>
+                                <option>Biology</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <label class="block text-sm font-medium text-slate-700 mb-2">Instructions for Students</label>
+                        <textarea rows="4" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-instructor focus:border-transparent" placeholder="Provide clear instructions for how students should approach this exam..." data-bind="exam.instructions"></textarea>
+                    </div>
+                </div>
+
+                <!-- Template Questions -->
+                <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-semibold text-slate-900">Template Questions</h2>
+                        <button type="button" class="bg-instructor text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition-colors flex items-center space-x-2" data-event="click:addTemplateQuestion">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Question</span>
+                        </button>
+                    </div>
+
+                    <!-- @MAP: templateQuestions.map((question, index) => ( -->
+                    <div class="border border-slate-200 rounded-lg p-6 mb-4">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-md font-medium text-slate-900">Question <span data-bind="index + 1">1</span></h3>
+                            <button type="button" class="text-red-400 hover:text-red-600" data-event="click:removeQuestion">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Template Question</label>
+                                <textarea rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-instructor focus:border-transparent" placeholder="e.g., Calculate the net force on an object with a mass of [mass] kg accelerating at [acceleration] m/s²." data-bind="question.template"></textarea>
+                                <p class="text-xs text-slate-500 mt-1">Use [variables] in brackets to indicate values that should be randomized by AI</p>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Context/Topic</label>
+                                <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-instructor focus:border-transparent" placeholder="e.g., High School Physics, Newton's Second Law" data-bind="question.context">
+                                <p class="text-xs text-slate-500 mt-1">Provide context to help AI generate appropriate variations</p>
+                            </div>
+
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="text-sm font-medium text-slate-700 mb-2 flex items-center">
+                                    <i class="fas fa-robot text-blue-500 mr-2"></i>
+                                    AI Preview
+                                </h4>
+                                <p class="text-sm text-slate-600 italic">AI will generate unique variations like: "What force is required to accelerate a 15 kg block at 4 m/s²?"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-lg p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-md font-medium text-slate-900">Question 2</h3>
+                            <button type="button" class="text-red-400 hover:text-red-600">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Template Question</label>
+                                <textarea rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-instructor focus:border-transparent" placeholder="A ball is thrown upward with an initial velocity of [velocity] m/s. Calculate the maximum height reached." data-mock="true"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Context/Topic</label>
+                                <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-instructor focus:border-transparent" placeholder="High School Physics, Projectile Motion" data-mock="true">
+                            </div>
+
+                            <div class="bg-slate-50 p-4 rounded-lg">
+                                <h4 class="text-sm font-medium text-slate-700 mb-2 flex items-center">
+                                    <i class="fas fa-robot text-blue-500 mr-2"></i>
+                                    AI Preview
+                                </h4>
+                                <p class="text-sm text-slate-600 italic">AI will generate unique variations like: "A ball is thrown upward with an initial velocity of 25 m/s. Calculate the maximum height reached."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- @END_MAP )) -->
+                </div>
+
+                <!-- Save Actions -->
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="text-slate-600 hover:text-slate-800 px-6 py-2 rounded-lg border border-slate-300">Save as Draft</button>
+                    <button type="submit" class="bg-instructor text-white px-6 py-2 rounded-lg hover:bg-indigo-600 transition-colors">Publish Exam</button>
+                </div>
+            </form>
+            <!-- @END_COMPONENT: ExamCreationForm -->
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="student-dashboard" class="min-h-screen bg-slate-50 hidden">
+        <!-- Student Navigation -->
+        <nav class="bg-white shadow-sm border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-8">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-student rounded-lg flex items-center justify-center">
+                                <i class="fas fa-graduation-cap text-white text-sm"></i>
+                            </div>
+                            <span class="text-xl font-bold text-slate-900">EduAssess</span>
+                        </div>
+                        <div class="hidden md:flex space-x-6">
+                            <a href="#" class="text-student font-medium border-b-2 border-student pb-4">Dashboard</a>
+                            <a href="#" class="text-slate-600 hover:text-slate-900 pb-4">My Exams</a>
+                            <a href="#" class="text-slate-600 hover:text-slate-900 pb-4">Results</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-student rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-xs"></i>
+                            </div>
+                            <span class="text-sm font-medium text-slate-700" data-bind="student.name">Sarah Johnson</span>
+                        </div>
+                        <button class="text-slate-400 hover:text-slate-600">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Welcome Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-slate-900 mb-2">Hello, <span data-bind="student.name">Sarah</span>!</h1>
+                <p class="text-slate-600">Ready to take your next assessment?</p>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-slate-600">Available Exams</p>
+                            <p class="text-3xl font-bold text-slate-900" data-bind="student.availableExams">2</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-clipboard-list text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-slate-600">Completed</p>
+                            <p class="text-3xl font-bold text-slate-900" data-bind="student.completedExams">8</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-slate-600">Average Score</p>
+                            <p class="text-3xl font-bold text-slate-900" data-bind="student.avgScore">87%</p>
+                        </div>
+                        <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-star text-indigo-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Available Exams -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-100">
+                        <div class="p-6 border-b border-slate-100">
+                            <h2 class="text-xl font-semibold text-slate-900">Available Exams</h2>
+                        </div>
+                        <div class="divide-y divide-slate-100">
+                            <!-- @MAP: availableExams.map(exam => ( -->
+                            <div class="p-6 hover:bg-slate-50 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-slate-900 mb-2" data-bind="exam.title">Physics Midterm - Newton's Laws</h3>
+                                        <div class="flex items-center space-x-4 text-sm text-slate-600 mb-3">
+                                            <span data-bind="exam.subject">Physics</span>
+                                            <span>•</span>
+                                            <span data-bind="exam.questions">5 questions</span>
+                                            <span>•</span>
+                                            <span data-bind="exam.instructor">Prof. Smith</span>
+                                        </div>
+                                        <p class="text-sm text-slate-600 mb-4" data-bind="exam.description">Test your understanding of Newton's three laws of motion through practical problem-solving scenarios.</p>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Available Now</span>
+                                            <span class="text-xs text-slate-500">Due: <span data-bind="exam.dueDate">Dec 15, 2023</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-6">
+                                        <button class="bg-student text-white px-6 py-2 rounded-lg hover:bg-emerald-600 transition-colors font-medium">
+                                            Start Exam
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-6 hover:bg-slate-50 transition-colors">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <h3 class="font-semibold text-slate-900 mb-2" data-bind="exam.title">Mathematics Quiz - Algebra</h3>
+                                        <div class="flex items-center space-x-4 text-sm text-slate-600 mb-3">
+                                            <span data-bind="exam.subject">Mathematics</span>
+                                            <span>•</span>
+                                            <span data-bind="exam.questions">8 questions</span>
+                                            <span>•</span>
+                                            <span data-bind="exam.instructor">Prof. Davis</span>
+                                        </div>
+                                        <p class="text-sm text-slate-600 mb-4" data-bind="exam.description">Solve algebraic equations and work with polynomial expressions in this comprehensive assessment.</p>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-medium">Opens Tomorrow</span>
+                                            <span class="text-xs text-slate-500">Due: <span data-bind="exam.dueDate">Dec 18, 2023</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="ml-6">
+                                        <button class="bg-slate-300 text-slate-500 px-6 py-2 rounded-lg cursor-not-allowed font-medium" disabled>
+                                            Not Available
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <!-- Recent Results -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
+                        <h3 class="text-lg font-semibold text-slate-900 mb-4">Recent Results</h3>
+                        <div class="space-y-4">
+                            <!-- @MAP: recentResults.map(result => ( -->
+                            <div class="border-l-4 border-green-500 pl-4 py-2">
+                                <h4 class="font-medium text-slate-900" data-bind="result.examName">Chemistry Lab Report</h4>
+                                <div class="flex items-center justify-between mt-1">
+                                    <span class="text-sm text-slate-600" data-bind="result.date">Dec 10, 2023</span>
+                                    <span class="text-lg font-bold text-green-600" data-bind="result.score">92%</span>
+                                </div>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4 py-2">
+                                <h4 class="font-medium text-slate-900" data-bind="result.examName">Biology Quiz</h4>
+                                <div class="flex items-center justify-between mt-1">
+                                    <span class="text-sm text-slate-600" data-bind="result.date">Dec 8, 2023</span>
+                                    <span class="text-lg font-bold text-blue-600" data-bind="result.score">85%</span>
+                                </div>
+                            </div>
+                            <div class="border-l-4 border-amber-500 pl-4 py-2">
+                                <h4 class="font-medium text-slate-900" data-bind="result.examName">History Essay</h4>
+                                <div class="flex items-center justify-between mt-1">
+                                    <span class="text-sm text-slate-600" data-bind="result.date">Dec 5, 2023</span>
+                                    <span class="text-lg font-bold text-amber-600" data-bind="result.score">78%</span>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                        <button class="w-full mt-4 text-student text-sm font-medium hover:text-emerald-600">View All Results</button>
+                    </div>
+
+                    <!-- Study Tips -->
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                        <div class="flex items-center space-x-2 mb-3">
+                            <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-lightbulb text-white text-sm"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-slate-900">Study Tip</h3>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Review your course materials before starting an exam. Each question will be uniquely generated for you, so understanding core concepts is key to success.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exam Taking Interface -->
+    <div id="exam-interface" class="min-h-screen bg-slate-50 hidden">
+        <!-- @STATE: currentQuestion:number = 0, answers:object = {}, timeRemaining:number = 3600 -->
+        <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-student rounded-lg flex items-center justify-center">
+                                <i class="fas fa-clipboard-list text-white text-sm"></i>
+                            </div>
+                            <div>
+                                <h1 class="font-semibold text-slate-900" data-bind="exam.title">Physics Midterm - Newton's Laws</h1>
+                                <p class="text-xs text-slate-600" data-bind="exam.instructor">Prof. Smith</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-slate-400"></i>
+                            <span class="text-sm font-medium text-slate-700" data-bind="timeRemaining">58:42</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-slate-600">Question <span data-bind="currentQuestion + 1">1</span> of <span data-bind="totalQuestions">5</span></span>
+                            <div class="w-24 bg-slate-200 rounded-full h-2">
+                                <div class="bg-student h-2 rounded-full" style="width: 20%" data-bind="progressPercent"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- @COMPONENT: ExamInterface [currentQuestion, totalQuestions, aiGeneratedQuestion, studentAnswer] -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+                <!-- Question Header -->
+                <div class="bg-gradient-to-r from-student to-emerald-400 px-6 py-4">
+                    <div class="flex items-center justify-between text-white">
+                        <h2 class="text-lg font-semibold">Question <span data-bind="currentQuestion + 1">1</span></h2>
+                        <span class="text-sm opacity-90">Physics</span>
+                    </div>
+                </div>
+
+                <!-- AI Generated Question -->
+                <div class="p-8">
+                    <div class="mb-6">
+                        <div class="flex items-start space-x-3 mb-4">
+                            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-robot text-blue-600 text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium text-slate-900 mb-2">AI-Generated Question for You</h3>
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                    <!-- @FUNCTIONALITY: This question is dynamically generated by AI based on instructor's template -->
+                                    <p class="text-slate-800 text-lg leading-relaxed" data-bind="aiGeneratedQuestion">
+                                        What force is required to accelerate a 15 kg block at 4 m/s²? Show your work and include units in your final answer.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Answer Section -->
+                    <div class="mb-8">
+                        <label class="block text-sm font-medium text-slate-700 mb-3">Your Answer</label>
+                        <textarea 
+                            rows="8" 
+                            class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-student focus:border-transparent resize-none" 
+                            placeholder="Type your answer here. Show your work step by step for partial credit..."
+                            data-bind="answers[currentQuestion]"
+                        ></textarea>
+                        <div class="flex items-center justify-between mt-2">
+                            <p class="text-xs text-slate-500">Your answer is automatically saved as you type</p>
+                            <span class="text-xs text-slate-400" data-bind="characterCount">0 / 2000 characters</span>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="flex items-center justify-between pt-6 border-t border-slate-200">
+                        <button class="flex items-center space-x-2 text-slate-600 hover:text-slate-800 px-4 py-2 rounded-lg hover:bg-slate-100 transition-colors" data-event="click:previousQuestion">
+                            <i class="fas fa-chevron-left"></i>
+                            <span>Previous</span>
+                        </button>
+                        
+                        <div class="flex items-center space-x-2">
+                            <!-- Question dots indicator -->
+                            <!-- @MAP: Array(totalQuestions).fill(0).map((_, index) => ( -->
+                            <button class="w-8 h-8 rounded-full bg-student text-white text-sm font-medium" data-bind="index === currentQuestion ? 'active' : 'inactive'">1</button>
+                            <button class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-300 transition-colors">2</button>
+                            The user wants me to create a design mockup for an AI-Powered Digital Assessment Platform. Let me analyze the requirements:
+
+1. This is an educational platform with two main user roles: Instructors and Students
+2. Key features include:
+   - Instructor dashboard for exam creation and management
+   - Student dashboard for taking exams and viewing results
+   - AI-powered unique question generation
+   - Template-based question system
+   - Role-based access control
+   - Exam submission and grading interface
+
+Let me apply my design decision framework:
+
+1. Initial Analysis - No specific aesthetic requirements mentioned
+2. Evaluating factors:
+   A. Purpose & User Needs: Utility-Focused (educational platform, efficiency matters)
+   B. Content Characteristics: Information-Dense (text, data, structured content)
+   C. Market Context: Function-Differentiated (performance and usability matter most)
+   D. Update Frequency: Stability-Valued (educational tools need consistency)
+   E. Component Complexity: Standard Patterns Sufficient (can use established UI components)
+
+Since 4/5 factors lean toward Utility-Focused/Function, I should use a Design System Approach. Given this is an educational platform that's information-dense and needs to be professional, I'll use Material Design principles with a clean, academic look.
+
+For the mockup, I need to show:
+- Login/Authentication interface
+- Instructor dashboard with exam management
+- Student dashboard 
+- Exam creation interface
+- Exam taking interface
+- Results/grading interface
+
+I'll create a comprehensive mockup that shows multiple screens/states in a single HTML file using JavaScript to switch between views.
+
+For icons, I'll use Heroicons since it's clean and modern.
+For the color palette, I'll use academic-friendly colors - blues and grays with accent colors for actions.EtUPCkgIBhACGAIqQMTGNXkPq7JBBuEnv+NNIsZcXE/Q5OZR/AZt+vkCWAp7KVw5fs7ek+bp0j5gFlRjs8ECiXb2TUCksBm0D03rLSUSDPEB9k3mFtD4SVC8+hoMvIvEkLUCDpxzxPsQIjAnYIcUO2E1Gl6JFon1mHKaotKeGUqFf57SuRr5HkvWblejZbXznIHcFzp5xwa6DPIqug55OtKRdi62A7yM3dYUsyKq7/imxT153pznvPUWe9XY85Nxc7RhKmFzltKc3H5nyRjFEoEf/xYPE67z89UHuLxzu+bgPRondEZksDZp5uMo2LPkwneuk5p0JN7PkHJViIQbk3Pj90IUAfvP2U+ZW2Fzeb9qcrH1QEQG+RKzS9tE2FCNy2h1xu4sS63qQOppDSEsZHbJl3gelu3+sHUEiSgc6ZjDgRlEGT76rs6zFwCyLbCOr3YKA3sqmaTuG7tnyHXqNLYbrKZTZsUhLr45/S6CFzpGqwyjFl9kUAPVyLcBW9mmRAKS+nBBB4sWepk/vPRViq0BstYyEWy+ePE/9jjn0Io1KNw/JuMzffMlP4Ja6i9lawjMgMyPOzK2GPN2gm3uMFimFEOv8m9BUJtexXfC4TR14vn3ocWBz+EqCg+PUQjVgwCoa0wz842PiNiAvYKzfR3+FQByXq7BfTt3o/dGOeJ5GDFOlqWUEwR08O65leZOMrwGb3H3VRh10yJxwwzs8XQYE8gbhDCtnciqA+2hQDTkFaOWkt78K44eu4KTn9uC+/bn9A0gKLw1wwy87h4gI1gzZnspMZzPkjaUuCNqFo6uD1GXtugbNe+pZyI68dq+Gw7jFD7nzBm6GeVI4keidd07zNIrFLIB8QSdrBbzieML4CPXYZRkM2Zwtjnrb07D0TluzJAeqJRnUORcthaa0gWJE8Gh1DA1IETFBcg5sp6n+ZUKKlArzmEupWyAyWtAaZY2dCaLgzwHqLmXtAJwCvQ7/PRG6G3L101B/SHJhi5EXYMSmUNB04iapMM53tqJoK3cnGIA8H5olpo5VDwZgT8c/Fj3FVWDlU5lKNumzXRtEtXz/q80xlu6jOw/9MwqXeTM5x8Fgh9HgngaTKWfdugVFpKMS+ZWHTmGgh6SnS79ago9kD0A7VG9lIDhjMuf4w4lkZWHKEtbgH3QQBJP4WM+2jzooj4wl+SnC5WtbdSk9tOpmEzRGbIO8F2IYnpd+yAqIRk92wiSURCRYyRsgGQwIyt/+dvTKoCR/X4gDgRytOOJS51A1hCQPR9XbojHiN50KAuTD0rZuArgjkWd+3kVMaAK/q3irEkYQxzAPk47gMul8BmGF4YGiT5bGZJ+zeYWd0DwMNFCKzFuZdhBbq2GRgqW2L0YlOhA3DWMrdHAT86hQDJ6AnVnQPTdkoTnK5SQLwwt8zEuyXkyJDLMCtgHOc4HekMwJJIx99SP5TeBF52L8VBqhTu+OFShLOg1ERuhpUabfxgZNpYQjk3V9gS6MSm3Cdns8EuqcbkQC2erRE1NB/kOtIsSDavQehra+c5dFCOFTz+67mNfUYlRmmHdRZmEQpRqRqlEJe1X7QIzLyJBEoOOJEIJw+6ZLlNMGCw5aVEUvxiu1qhsFVjP2eSO9wYzU7NGIQKZ6kt9slWOReK4+nr21va6dBKBGHPvJYbDqH54SNISK+gt/ASZjy3eX0lqHOQhPmK2e2zgmtXFV/iUerMTknOAzHluP6+G7dO1SeYKEv8T01qteEcIqN3mPP9U5ZB/1hRX443lsUYsNsi6YwoBxVHKF9wEryrs6fsB+TeYNnW3nBFno2d9dfvn6XH/DrRCfP8THD4XjbdLr8zUm9On+hKOT0OfG8Fys+Z0sl9m5jjaR6EUGB9LeZdm2OtWMgApY6zKtb6uJXWxlsQXMWJWTg21gV5ZFaK36E+dZnGXiuxv/lnZNWQeIcUtm2kjLoue4SMK91i8Ax4G9SoI/py4wQjuSV7c2wgtbZcYOoe5wA3aQeOqypWbRAR1FX9i2t1ktGZz3AN+/tnZHe/kcLepy5TTHOaEU4+mcv/Ftgg2J471dEJngSpuM3N1jd4oGVoaodKbiBnPI90PQGucftzYNUqfVF7NEJaA0M/DeK6F/ygtvycmRAvCvR1EcjU5fV+evAicbVFwrXUI9sSRoLtK5P2TbA5ke936Wdy9uru/4r5r3g8d4JOqbBi+ys7ekVdJ9G0/FP4uP/clUZW2R/G/JQZNQh/jBHTCAHb08n4tkBOninOQDlawuZGS3EB9vlpi3C+G912IwHgnyojoSgLy5SlIx+9g0iNSP++Kt6fkrpr7oo9GJy73yqrpxI4v8wa4ybxPj5Fv6mxeKtInctF3mCpNm8Iw5FvQlrozMynZzgbBs2fyy/YW4abXz6+Z/HxCCDhWx4mjbIV8j7bCFpmgNMy4qH4Cv729eIJ1cisGDLok2524HtYIOzfE+OrhVW+3a/h8Go1o1EJspFWZqrPgWKib8vp29JyrHgT0kKcm8h0vXt/NbCg9/UlRQtmP86ooVUMP3WcwKZCAehJEkAk0S5poT6Jultuh9yyldJnzICkdSgNeayJpZuDRe/52EWYdDXrK1UoqrFlunexw4kwTJvQnMp1mVYB5CQRBKvFywcN8zecu7sSoPvg2c+RxshE7UqgigZoBGakJOf7PkN1IpBgB# style
+
+**Design Approach**: Material Design System with academic-focused customization for clean, professional educational interface.
+
+**Color Palette**: 
+- Primary: #1976D2 (Academic Blue)
+- Secondary: #424242 (Charcoal Gray) 
+- Accent: #4CAF50 (Success Green), #FF9800 (Warning Orange)
+- Neutral: #F5F5F5 (Light Gray), #FFFFFF (White)
+- Text: #212121 (Dark Gray), #757575 (Medium Gray)
+
+**Typography**: Inter font family for excellent readability with clear hierarchy using font weights 400, 500, 600, and 700.
+
+**Layout**: Card-based design with consistent 16px/24px spacing, 12-column responsive grid, and clean navigation patterns.
+
+**Components**: Material-inspired cards, buttons, form inputs, and navigation with subtle shadows and rounded corners. Role-based dashboards with clear visual hierarchy.
+
+**Interaction Patterns**: Hover states, loading indicators, clear CTAs, and intuitive navigation flow between instructor and student experiences.
+
+# directory_structure
+```json
+[
+     {"path": "production_design_mockup.html", "status": "new"}
+]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Digital Assessment Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1976D2',
+                        secondary: '#424242',
+                        accent: '#4CAF50',
+                        warning: '#FF9800',
+                        surface: '#F5F5F5',
+                        'text-primary': '#212121',
+                        'text-secondary': '#757575'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/heroicons@2.0.18/24/outline/index.js" type="module"></script>
+</head>
+<body class="bg-surface font-sans">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-xl font-bold text-primary">AssessmentAI</h1>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <span class="text-white text-sm font-medium">JD</span>
+                        </div>
+                        <span class="text-text-primary font-medium" id="user-name">Dr. Jane Doe</span>
+                        <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full" id="user-role">Instructor</span>
+                    </div>
+                    <button class="text-text-secondary hover:text-text-primary transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- View Selector (Demo Navigation) -->
+        <div class="mb-8 bg-white rounded-lg shadow-sm p-4">
+            <h3 class="text-sm font-medium text-text-secondary mb-3">Demo Navigation (Choose View)</h3>
+            <div class="flex flex-wrap gap-2">
+                <button onclick="showView('instructor-dashboard')" class="px-3 py-2 text-sm bg-primary text-white rounded-md hover:bg-primary/90 transition-colors">Instructor Dashboard</button>
+                <button onclick="showView('create-exam')" class="px-3 py-2 text-sm bg-secondary text-white rounded-md hover:bg-secondary/90 transition-colors">Create Exam</button>
+                <button onclick="showView('student-dashboard')" class="px-3 py-2 text-sm bg-accent text-white rounded-md hover:bg-accent/90 transition-colors">Student Dashboard</button>
+                <button onclick="showView('take-exam')" class="px-3 py-2 text-sm bg-warning text-white rounded-md hover:bg-warning/90 transition-colors">Take Exam</button>
+                <button onclick="showView('exam-results')" class="px-3 py-2 text-sm bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors">View Results</button>
+            </div>
+        </div>
+
+        <!-- @COMPONENT: InstructorDashboard -->
+        <div id="instructor-dashboard" class="view-content">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-text-primary mb-2">Instructor Dashboard</h2>
+                <p class="text-text-secondary">Manage your exams and monitor student progress</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Total Exams</p>
+                            <p class="text-2xl font-bold text-text-primary">12</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Active Students</p>
+                            <p class="text-2xl font-bold text-text-primary">84</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-warning/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Pending Grades</p>
+                            <p class="text-2xl font-bold text-text-primary">7</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Avg Score</p>
+                            <p class="text-2xl font-bold text-text-primary">87%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold text-text-primary mb-4">Quick Actions</h3>
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="showView('create-exam')" class="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Create New Exam
+                    </button>
+                    <button class="flex items-center px-4 py-2 bg-white text-text-primary border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                        </svg>
+                        Import Questions
+                    </button>
+                    <button class="flex items-center px-4 py-2 bg-white text-text-primary border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                        </svg>
+                        View Analytics
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Exams -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Recent Exams</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-text-primary">Physics Midterm</h4>
+                                <p class="text-sm text-text-secondary">Created 3 days ago • 28 submissions</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent/10 text-accent">Active</span>
+                                <button class="text-text-secondary hover:text-text-primary">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-text-primary">Chemistry Quiz #3</h4>
+                                <p class="text-sm text-text-secondary">Created 1 week ago • 31 submissions</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-text-secondary">Completed</span>
+                                <button class="text-text-secondary hover:text-text-primary">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-text-primary">Biology Lab Report</h4>
+                                <p class="text-sm text-text-secondary">Created 2 weeks ago • 25 submissions</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-warning/10 text-warning">Grading</span>
+                                <button class="text-text-secondary hover:text-text-primary">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student Progress -->
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Student Progress</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <span class="text-sm font-medium text-blue-600">AS</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-text-primary">Alice Smith</p>
+                                    <p class="text-sm text-text-secondary">Physics Midterm</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium text-accent">92%</p>
+                                <p class="text-xs text-text-secondary">Completed</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <span class="text-sm font-medium text-green-600">BJ</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-text-primary">Bob Johnson</p>
+                                    <p class="text-sm text-text-secondary">Chemistry Quiz #3</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium text-warning">Pending</p>
+                                <p class="text-xs text-text-secondary">In Progress</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <span class="text-sm font-medium text-purple-600">CD</span>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-text-primary">Carol Davis</p>
+                                    <p class="text-sm text-text-secondary">Biology Lab Report</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium text-accent">88%</p>
+                                <p class="text-xs text-text-secondary">Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: InstructorDashboard -->
+
+        <!-- @COMPONENT: CreateExam -->
+        <div id="create-exam" class="view-content hidden">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-text-primary mb-2">Create New Exam</h2>
+                <p class="text-text-secondary">Set up your exam with AI-powered question templates</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                <form class="space-y-6">
+                    <!-- Basic Information -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="exam-title" class="block text-sm font-medium text-text-primary mb-2">Exam Title</label>
+                            <input type="text" id="exam-title" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., Physics Midterm Exam" data-mock="true">
+                        </div>
+                        <div>
+                            <label for="exam-subject" class="block text-sm font-medium text-text-primary mb-2">Subject</label>
+                            <select id="exam-subject" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" data-mock="true">
+                                <option>Select Subject</option>
+                                <option>Physics</option>
+                                <option>Chemistry</option>
+                                <option>Biology</option>
+                                <option>Mathematics</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="exam-instructions" class="block text-sm font-medium text-text-primary mb-2">Instructions</label>
+                        <textarea id="exam-instructions" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Provide clear instructions for students..." data-mock="true"></textarea>
+                    </div>
+
+                    <!-- Question Templates Section -->
+                    <div class="border-t pt-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-text-primary">Question Templates</h3>
+                            <button type="button" onclick="addQuestionTemplate()" class="flex items-center px-3 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                Add Question
+                            </button>
+                        </div>
+
+                        <div id="question-templates">
+                            <!-- Sample Question Template 1 -->
+                            <div class="border border-gray-200 rounded-lg p-4 mb-4 question-template">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="font-medium text-text-primary">Question 1</h4>
+                                    <button type="button" class="text-red-600 hover:text-red-800">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-text-primary mb-2">Template Question</label>
+                                        <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., Calculate the net force on an object with a mass of [mass] kg accelerating at [acceleration] m/s²." data-mock="true">Calculate the net force on an object with a mass of [mass] kg accelerating at [acceleration] m/s².</textarea>
+                                        <p class="text-xs text-text-secondary mt-1">Use brackets [variable] to indicate values that should change between students</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-text-primary mb-2">Context/Topic</label>
+                                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., High School Physics, Newton's Second Law" data-mock="true" value="High School Physics, Newton's Second Law">
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-text-primary mb-2">Difficulty Level</label>
+                                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" data-mock="true">
+                                                <option>Beginner</option>
+                                                <option>Intermediate</option>
+                                                <option>Advanced</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-text-primary mb-2">Points</label>
+                                            <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="10" data-mock="true" value="10">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sample Question Template 2 -->
+                            <div class="border border-gray-200 rounded-lg p-4 mb-4 question-template">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h4 class="font-medium text-text-primary">Question 2</h4>
+                                    <button type="button" class="text-red-600 hover:text-red-800">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-text-primary mb-2">Template Question</label>
+                                        <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., A ball is thrown at [angle] degrees with initial velocity [velocity] m/s. Calculate the maximum height reached." data-mock="true">A ball is thrown at [angle] degrees with initial velocity [velocity] m/s. Calculate the maximum height reached.</textarea>
+                                        <p class="text-xs text-text-secondary mt-1">Use brackets [variable] to indicate values that should change between students</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-text-primary mb-2">Context/Topic</label>
+                                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., High School Physics, Projectile Motion" data-mock="true" value="High School Physics, Projectile Motion">
+                                    </div>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-text-primary mb-2">Difficulty Level</label>
+                                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" data-mock="true">
+                                                <option>Beginner</option>
+                                                <option selected>Intermediate</option>
+                                                <option>Advanced</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-text-primary mb-2">Points</label>
+                                            <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="15" data-mock="true" value="15">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Preview Section -->
+                    <div class="border-t pt-6">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">AI Preview</h3>
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                            <p class="text-sm text-blue-800 mb-2">✨ AI will generate unique variations for each student based on your templates</p>
+                            <div class="text-sm text-blue-700">
+                                <p><strong>Example variations for Question 1:</strong></p>
+                                <ul class="list-disc list-inside mt-1 space-y-1">
+                                    <li>Student A: "Calculate the net force on an object with a mass of 12 kg accelerating at 3.5 m/s²."</li>
+                                    <li>Student B: "Calculate the net force on an object with a mass of 8 kg accelerating at 4.2 m/s²."</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="flex items-center justify-end space-x-4 pt-6 border-t">
+                        <button type="button" class="px-4 py-2 border border-gray-300 text-text-primary rounded-md hover:bg-gray-50 transition-colors">Save as Draft</button>
+                        <button type="submit" class="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors">Create Exam</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: CreateExam -->
+
+        <!-- @COMPONENT: StudentDashboard -->
+        <div id="student-dashboard" class="view-content hidden">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-text-primary mb-2">Student Dashboard</h2>
+                <p class="text-text-secondary">Welcome back! Here are your available exams and progress</p>
+            </div>
+
+            <!-- Student Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Completed Exams</p>
+                            <p class="text-2xl font-bold text-text-primary">8</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-warning/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Pending Exams</p>
+                            <p class="text-2xl font-bold text-text-primary">2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-sm font-medium text-text-secondary">Average Score</p>
+                            <p class="text-2xl font-bold text-text-primary">92%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Exams -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Available Exams</h3>
+                    <div class="space-y-4">
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-text-primary">Physics Midterm</h4>
+                                    <p class="text-sm text-text-secondary mb-2">Dr. Jane Doe • Due in 3 days</p>
+                                    <div class="flex items-center space-x-4 text-xs text-text-secondary">
+                                        <span>2 questions</span>
+                                        <span>25 points total</span>
+                                        <span>60 min time limit</span>
+                                    </div>
+                                </div>
+                                <button onclick="showView('take-exam')" class="px-3 py-1.5 bg-primary text-white text-sm rounded-md hover:bg-primary/90 transition-colors">Start Exam</button>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-text-primary">Chemistry Lab Quiz</h4>
+                                    <p class="text-sm text-text-secondary mb-2">Prof. Smith • Due next week</p>
+                                    <div class="flex items-center space-x-4 text-xs text-text-secondary">
+                                        <span>5 questions</span>
+                                        <span>50 points total</span>
+                                        <span>45 min time limit</span>
+                                    </div>
+                                </div>
+                                <button class="px-3 py-1.5 bg-accent text-white text-sm rounded-md hover:bg-accent/90 transition-colors">Start Exam</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Results -->
+                <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Recent Results</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-green-50 border border-green-200 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-text-primary">Biology Quiz #2</h4>
+                                <p class="text-sm text-text-secondary">Submitted 2 days ago</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-accent">95%</p>
+                                <button onclick="showView('exam-results')" class="text-xs text-primary hover:underline">View Details</button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-text-primary">Math Assessment</h4>
+                                <p class="text-sm text-text-secondary">Submitted 5 days ago</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-warning">Pending</p>
+                                <p class="text-xs text-text-secondary">Grading in progress</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-text-primary">English Essay</h4>
+                                <p class="text-sm text-text-secondary">Submitted 1 week ago</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-lg font-bold text-accent">88%</p>
+                                <button class="text-xs text-primary hover:underline">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: StudentDashboard -->
+
+        <!-- @COMPONENT: TakeExam -->
+        <div id="take-exam" class="view-content hidden">
+            <div class="mb-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold text-text-primary mb-2">Physics Midterm</h2>
+                        <p class="text-text-secondary">Dr. Jane Doe • 2 questions • 25 points total</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold text-primary" id="timer">58:42</div>
+                        <p class="text-sm text-text-secondary">Time remaining</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6 border border-gray-100">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-text-primary">Progress</span>
+                    <span class="text-sm text-text-secondary">Question 1 of 2</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-primary h-2 rounded-full" style="width: 50%"></div>
+                </div>
+            </div>
+
+            <!-- Exam Questions -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100 mb-6">
+                <div class="space-y-8">
+                    <!-- Question 1 -->
+                    <div class="border-b pb-8">
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-text-primary">Question 1</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">10 points</span>
+                        </div>
+                        
+                        <!-- AI Generated Question -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                            <div class="flex items-start space-x-2">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-blue-800 mb-1">AI-Generated Question</p>
+                                    <p class="text-blue-900" data-mock="true">Calculate the net force on an object with a mass of 12 kg accelerating at 3.5 m/s². Show all work and include units in your final answer.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="answer-1" class="block text-sm font-medium text-text-primary mb-2">Your Answer</label>
+                            <textarea id="answer-1" rows="6" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Type your answer here..." data-mock="true"></textarea>
+                            <p class="text-xs text-text-secondary mt-1">Show your work step by step for partial credit</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div>
+                        <div class="flex items-start justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-text-primary">Question 2</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">15 points</span>
+                        </div>
+                        
+                        <!-- AI Generated Question -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                            <div class="flex items-start space-x-2">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-blue-800 mb-1">AI-Generated Question</p>
+                                    <p class="text-blue-900" data-mock="true">A ball is thrown at 45 degrees with initial velocity 20 m/s. Calculate the maximum height reached. Use g = 9.8 m/s².</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="answer-2" class="block text-sm font-medium text-text-primary mb-2">Your Answer</label>
+                            <textarea id="answer-2" rows="6" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Type your answer here..." data-mock="true"></textarea>
+                            <p class="text-xs text-text-secondary mt-1">Include all calculations and reasoning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation & Submit -->
+            <div class="flex items-center justify-between">
+                <div class="flex space-x-3">
+                    <button class="px-4 py-2 border border-gray-300 text-text-primary rounded-md hover:bg-gray-50 transition-colors">Save Draft</button>
+                    <button class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors">Previous</button>
+                </div>
+                <div class="flex space-x-3">
+                    <button class="px-4 py-2 bg-secondary text-white rounded-md hover:bg-secondary/90 transition-colors">Next Question</button>
+                    <button class="px-6 py-2 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors font-medium">Submit Exam</button>
+                </div>
+            </div>
+
+            <!-- Auto-save indicator -->
+            <div class="mt-4 text-center">
+                <p class="text-xs text-text-secondary">
+                    <span class="inline-flex items-center">
+                        <svg class="w-3 h-3 mr-1 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Auto-saved 2 minutes ago
+                    </span>
+                </p>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: TakeExam -->
+
+        <!-- @COMPONENT: ExamResults -->
+        <div id="exam-results" class="view-content hidden">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-text-primary mb-2">Exam Results</h2>
+                <p class="text-text-secondary">Biology Quiz #2 • Submitted 2 days ago</p>
+            </div>
+
+            <!-- Overall Score -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100 mb-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">Overall Score</h3>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-4xl font-bold text-accent">95%</div>
+                            <div class="text-text-secondary">
+                                <p>47 out of 50 points</p>
+                                <p class="text-sm">Submitted on time</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="w-24 h-24 rounded-full border-4 border-accent flex items-center justify-center">
+                            <span class="text-xl font-bold text-accent">A</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question-by-Question Breakdown -->
+            <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+                <h3 class="text-lg font-semibold text-text-primary mb-6">Question Breakdown</h3>
+                
+                <div class="space-y-8">
+                    <!-- Question 1 Result -->
+                    <div class="border-b pb-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <h4 class="font-medium text-text-primary">Question 1</h4>
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-accent/10 text-accent text-sm font-medium px-3 py-1 rounded-full">10/10 points</span>
+                                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <!-- Your Question -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                            <p class="text-sm font-medium text-blue-800 mb-1">Your AI-Generated Question</p>
+                            <p class="text-blue-900" data-mock="true">Explain the process of photosynthesis in chloroplasts, including the role of chlorophyll and the production of glucose and oxygen.</p>
+                        </div>
+
+                        <!-- Your Answer -->
+                        <div class="mb-4">
+                            <p class="text-sm font-medium text-text-primary mb-2">Your Answer</p>
+                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                                <p class="text-text-primary" data-mock="true">Photosynthesis is the process by which plants convert light energy into chemical energy. It occurs in the chloroplasts of plant cells, specifically in the thylakoids where chlorophyll is located. The process involves two main stages: the light-dependent reactions and the Calvin cycle. Chlorophyll absorbs light energy, which is used to split water molecules, releasing oxygen as a byproduct. The energy is then used to produce ATP and NADPH, which are used in the Calvin cycle to convert carbon dioxide into glucose.</p>
+                            </div>
+                        </div>
+
+                        <!-- Instructor Feedback -->
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <p class="text-sm font-medium text-green-800 mb-1">Instructor Feedback</p>
+                            <p class="text-green-900" data-mock="true">Excellent comprehensive answer! You correctly identified the key components and processes. Your explanation of the light-dependent reactions and Calvin cycle was particularly well done.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 Result -->
+                    <div class="border-b pb-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <h4 class="font-medium text-text-primary">Question 2</h4>
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">12/15 points</span>
+                                <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <!-- Your Question -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                            <p class="text-sm font-medium text-blue-800 mb-1">Your AI-Generated Question</p>
+                            <p class="text-blue-900" data-mock="true">Compare and contrast mitosis and meiosis, including their purposes, number of divisions, and final outcomes in terms of chromosome number and genetic variation.</p>
+                        </div>
+
+                        <!-- Your Answer -->
+                        <div class="mb-4">
+                            <p class="text-sm font-medium text-text-primary mb-2">Your Answer</p>
+                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                                <p class="text-text-primary" data-mock="true">Mitosis and meiosis are both cell division processes. Mitosis produces two identical diploid cells and is used for growth and repair. Meiosis produces four genetically different haploid gametes and is used for sexual reproduction. Mitosis involves one division while meiosis involves two divisions.</p>
+                            </div>
+                        </div>
+
+                        <!-- Instructor Feedback -->
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <p class="text-sm font-medium text-yellow-800 mb-1">Instructor Feedback</p>
+                            <p class="text-yellow-900" data-mock="true">Good basic understanding! You correctly identified the key differences. However, you could have provided more detail about crossing over in meiosis and the specific phases. Also mention that mitosis maintains chromosome number while meiosis reduces it by half.</p>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 Result -->
+                    <div>
+                        <div class="flex items-start justify-between mb-4">
+                            <h4 class="font-medium text-text-primary">Question 3</h4>
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-accent/10 text-accent text-sm font-medium px-3 py-1 rounded-full">25/25 points</span>
+                                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <!-- Your Question -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                            <p class="text-sm font-medium text-blue-800 mb-1">Your AI-Generated Question</p>
+                            <p class="text-blue-900" data-mock="true">Describe the structure and function of DNA, including the roles of the four nucleotide bases, the double helix structure, and how genetic information is stored and transmitted.</p>
+                        </div>
+
+                        <!-- Your Answer -->
+                        <div class="mb-4">
+                            <p class="text-sm font-medium text-text-primary mb-2">Your Answer</p>
+                            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                                <p class="text-text-primary" data-mock="true">DNA (Deoxyribonucleic acid) is a double-stranded molecule that forms a double helix structure. It consists of four nucleotide bases: Adenine (A), Thymine (T), Guanine (G), and Cytosine (C). These bases pair specifically: A with T and G with C, connected by hydrogen bonds. The sugar-phosphate backbone provides structural support. DNA stores genetic information in the sequence of these bases, which code for proteins. During replication, the double helix unwinds and each strand serves as a template for creating a new complementary strand, ensuring genetic information is accurately transmitted to daughter cells.</p>
+                            </div>
+                        </div>
+
+                        <!-- Instructor Feedback -->
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <p class="text-sm font-medium text-green-800 mb-1">Instructor Feedback</p>
+                            <p class="text-green-900" data-mock="true">Outstanding answer! You demonstrated a thorough understanding of DNA structure and function. Your explanation of base pairing, the double helix, and replication was comprehensive and accurate. Excellent work!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center justify-between mt-8">
+                <button onclick="showView('student-dashboard')" class="px-4 py-2 border border-gray-300 text-text-primary rounded-md hover:bg-gray-50 transition-colors">
+                    <svg class="w-4 h-4 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Dashboard
+                </button>
+                <div class="flex space-x-3">
+                    <button class="px-4 py-2 border border-gray-300 text-text-primary rounded-md hover:bg-gray-50 transition-colors">Download PDF</button>
+                    <button class="px-4 py-2 border border-gray-300 text-text-primary rounded-md hover:bg-gray-50 transition-colors">Print Results</button>
+                </div>
+            </div>
+        </div>
+        <!-- @END_COMPONENT: ExamResults -->
+
+    </div>
+
+    <script>
+        // Demo navigation functionality
+        function showView(viewId) {
+            // Hide all views
+            const views = document.querySelectorAll('.view-content');
+            views.forEach(view => view.classList.add('hidden'));
+            
+            // Show selected view
+            const selectedView = document.getElementById(viewId);
+            if (selectedView) {
+                selectedView.classList.remove('hidden');
+            }
+
+            // Update user info based on view
+            const userName = document.getElementById('user-name');
+            const userRole = document.getElementById('user-role');
+            
+            if (viewId.includes('student')) {
+                userName.textContent = 'Alice Smith';
+                userRole.textContent = 'Student';
+                userRole.className = 'text-xs bg-accent/10 text-accent px-2 py-1 rounded-full';
+            } else {
+                userName.textContent = 'Dr. Jane Doe';
+                userRole.textContent = 'Instructor';
+                userRole.className = 'text-xs bg-primary/10 text-primary px-2 py 1 rounded-full';
+            }
+        }
+
+        // Question template management
+        let questionCount = 2;
+        
+        function addQuestionTemplate() {
+            questionCount++;
+            const container = document.getElementById('question-templates');
+            const newTemplate = document.createElement('div');
+            newTemplate.className = 'border border-gray-200 rounded-lg p-4 mb-4 question-template';
+            newTemplate.innerHTML = `
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="font-medium text-text-primary">Question ${questionCount}</h4>
+                    <button type="button" onclick="removeQuestionTemplate(this)" class="text-red-600 hover:text-red-800">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Template Question</label>
+                        <textarea rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your template question with [variables] in brackets"></textarea>
+                        <p class="text-xs text-text-secondary mt-1">Use brackets [variable] to indicate values that should change between students</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-2">Context/Topic</label>
+                        <input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., High School Biology, Cell Division">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Difficulty Level</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option>Beginner</option>
+                                <option>Intermediate</option>
+                                <option>Advanced</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Points</label>
+                            <input type="number" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="10">
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(newTemplate);
+        }
+
+        function removeQuestionTemplate(button) {
+            const template = button.closest('.question-template');
+            if (template) {
+                template.remove();
+                
+                // Renumber remaining questions
+                const templates = document.querySelectorAll('.question-template');
+                templates.forEach((template, index) => {
+                    const heading = template.querySelector('h4');
+                    if (heading) {
+                        heading.textContent = `Question ${index + 1}`;
+                    }
+                });
+                questionCount = templates.length;
+            }
+        }
+
+        // Timer simulation for exam
+        let timeRemaining = 3522; // 58:42 in seconds
+        
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerElement = document.getElementById('timer');
+            if (timerElement) {
+                timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
+            
+            if (timeRemaining > 0) {
+                timeRemaining--;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+
+        // Initialize timer when exam view is shown
+        document.addEventListener('DOMContentLoaded', function() {
+            updateTimer();
+        });
+
+        // Show instructor dashboard by default
+        showView('instructor-dashboard');
+    </script>
+</body>
+</html>
