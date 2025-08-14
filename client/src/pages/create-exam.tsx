@@ -112,6 +112,16 @@ export default function CreateExam() {
     }]);
   };
 
+  const addExampleQuestion = () => {
+    const exampleQuestion = {
+      templateText: "Calculate the velocity of an object with a mass of [mass] kg when a force of [force] N is applied for [time] seconds, starting from rest.",
+      context: "High School Physics - Newton's Laws and Kinematics",
+      points: 15,
+      orderIndex: questions.length + 1
+    };
+    setQuestions([...questions, exampleQuestion]);
+  };
+
   const removeQuestion = (index: number) => {
     if (questions.length > 1) {
       setQuestions(questions.filter((_, i) => i !== index));
@@ -213,10 +223,16 @@ export default function CreateExam() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>Question Templates</CardTitle>
-                <Button type="button" onClick={addQuestion} variant="outline" data-testid="button-add-question">
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Question
-                </Button>
+                <div className="flex items-center space-x-2">
+                  <Button type="button" onClick={addExampleQuestion} variant="outline" size="sm" data-testid="button-add-example">
+                    <Brain className="w-4 h-4 mr-2" />
+                    Add Example
+                  </Button>
+                  <Button type="button" onClick={addQuestion} variant="outline" data-testid="button-add-question">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Question
+                  </Button>
+                </div>
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -247,12 +263,18 @@ export default function CreateExam() {
                         value={question.templateText}
                         onChange={(e) => updateQuestion(index, 'templateText', e.target.value)}
                         placeholder="e.g., Calculate the net force on an object with a mass of [mass] kg accelerating at [acceleration] m/s²."
-                        rows={3}
+                        rows={4}
                         data-testid={`textarea-template-${index}`}
                       />
-                      <p className="text-xs text-slate-500">
-                        Use [variables] in brackets to indicate values that should be randomized by AI
-                      </p>
+                      <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                        <h5 className="text-sm font-medium text-amber-800 mb-1">💡 AI Generation Tips:</h5>
+                        <ul className="text-xs text-amber-700 space-y-1">
+                          <li>• Use [variables] for values AI should randomize (e.g., [mass], [velocity])</li>
+                          <li>• Include specific scenarios that can be varied (person names, objects, locations)</li>
+                          <li>• Write clear, complete questions that test specific learning objectives</li>
+                          <li>• AI will create unique variations while maintaining equivalent difficulty</li>
+                        </ul>
+                      </div>
                     </div>
 
                     <div className="space-y-2">
@@ -260,11 +282,11 @@ export default function CreateExam() {
                       <Input
                         value={question.context}
                         onChange={(e) => updateQuestion(index, 'context', e.target.value)}
-                        placeholder="e.g., High School Physics, Newton's Second Law"
+                        placeholder="e.g., High School Physics, Newton's Second Law, Problem-solving with kinematics"
                         data-testid={`input-context-${index}`}
                       />
                       <p className="text-xs text-slate-500">
-                        Provide context to help AI generate appropriate variations
+                        Specific learning objective and difficulty level - helps AI maintain educational equivalence
                       </p>
                     </div>
 
@@ -287,21 +309,45 @@ export default function CreateExam() {
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                         <h4 className="text-sm font-medium text-blue-800 mb-2 flex items-center">
                           <Brain className="w-4 h-4 mr-2" />
-                          AI Preview
+                          AI Variation Preview
                         </h4>
-                        <p className="text-sm text-blue-700 italic">
-                          AI will generate unique variations like: "{question.templateText.replace(/\[([^\]]+)\]/g, (match, variable) => {
-                            const examples: { [key: string]: string } = {
-                              'mass': '15',
-                              'acceleration': '4',
-                              'velocity': '25',
-                              'angle': '30',
-                              'distance': '100',
-                              'time': '5',
-                            };
-                            return examples[variable.toLowerCase()] || '10';
-                          })}"
-                        </p>
+                        <div className="space-y-2">
+                          <p className="text-sm text-blue-700">
+                            <span className="font-medium">Student A might get:</span><br />
+                            <span className="italic">"{question.templateText.replace(/\[([^\]]+)\]/g, (match, variable) => {
+                              const examples: { [key: string]: string } = {
+                                'mass': '15',
+                                'acceleration': '4',
+                                'velocity': '25',
+                                'angle': '30',
+                                'distance': '100',
+                                'time': '5',
+                                'force': '50',
+                                'speed': '12',
+                                'height': '25'
+                              };
+                              return examples[variable.toLowerCase()] || '10';
+                            })}"</span>
+                          </p>
+                          <p className="text-sm text-blue-700">
+                            <span className="font-medium">Student B might get:</span><br />
+                            <span className="italic">"{question.templateText.replace(/\[([^\]]+)\]/g, (match, variable) => {
+                              const examples: { [key: string]: string } = {
+                                'mass': '8',
+                                'acceleration': '6',
+                                'velocity': '18',
+                                'angle': '45',
+                                'distance': '75',
+                                'time': '3',
+                                'force': '35',
+                                'speed': '20',
+                                'height': '40'
+                              };
+                              return examples[variable.toLowerCase()] || '15';
+                            })}"</span>
+                          </p>
+                        </div>
+                        <p className="text-xs text-blue-600 mt-2">Each student receives a completely unique question with equivalent difficulty.</p>
                       </div>
                     )}
                   </div>
@@ -318,23 +364,34 @@ export default function CreateExam() {
                   <Brain className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-blue-900 mb-2">AI-Powered Question Generation</h3>
+                  <h3 className="font-semibold text-blue-900 mb-2">Advanced AI Question Generation System</h3>
                   <p className="text-blue-800 text-sm mb-3">
-                    Each student will receive unique questions generated from your templates while maintaining 
-                    equivalent difficulty and learning objectives. This ensures academic integrity while providing 
-                    fair assessment for all students.
+                    Our AI ensures <strong>zero question duplication</strong> across all students. Each student receives 
+                    completely unique questions that test identical concepts with equivalent difficulty. This advanced 
+                    system eliminates cheating while maintaining fair assessment standards.
                   </p>
-                  <div className="flex items-center space-x-2">
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-                      Unique per student
-                    </Badge>
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-                      Equivalent difficulty
-                    </Badge>
-                    <Badge variant="secondary" className="bg-blue-100 text-blue-800">
-                      Academic integrity
-                    </Badge>
-                  </div>
+                  <ul className="text-blue-700 text-sm space-y-2">
+                    <li className="flex items-center space-x-2">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span><strong>Unique Questions:</strong> No two students get identical questions</span>
+                    </li>
+                    <li className="flex items-center space-x-2">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span><strong>Equivalent Difficulty:</strong> All variations maintain the same challenge level</span>
+                    </li>
+                    <li className="flex items-center space-x-2">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span><strong>Same Learning Goals:</strong> Every question tests identical concepts</span>
+                    </li>
+                    <li className="flex items-center space-x-2">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span><strong>Academic Integrity:</strong> Eliminates cheating through uniqueness</span>
+                    </li>
+                    <li className="flex items-center space-x-2">
+                      <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
+                      <span><strong>Smart Templates:</strong> Use [variables] for automatic value randomization</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </CardContent>
