@@ -1,0 +1,37 @@
+Project Title: AI-Powered Digital Assessment Platform
+High-Level Objective:
+Build a full-stack web application using Next.js and Tailwind CSS that functions as a digital platform for academic assessments. This platform must solve two key problems: 1) reduce paper waste by digitizing exams and course materials, and 2) ensure academic integrity by using an AI model to generate unique but equivalent questions for each student. The final application must be cleanly structured for easy deployment to Vercel from a GitHub repository.
+Core Features (by User Role):
+1. Instructor/Teacher Role:
+Authentication: Secure login/logout for instructors.
+Dashboard: A central page showing created exams, active exams, and completed exams.
+Exam Creation:
+A form to create a new exam with a title, subject, and instructions.
+For each question in the exam, the instructor must provide a "Template Question" (e.g., "Calculate the net force on an object with a mass of [mass] kg accelerating at [acceleration] m/s².") and a "Context/Topic" (e.g., "High School Physics, Newton's Second Law").
+The instructor can add multiple template questions to an exam.
+Exam Management: View a list of students who have taken an exam and see their submitted answers.
+AI-Assisted Evaluation: Display the student's answer alongside the AI-generated question for easier manual grading.
+2. Student Role:
+Authentication: Secure login/logout for students.
+Dashboard: A simple page showing available exams to take and a history of completed exams.
+Take Exam:
+When a student starts an exam, the system will call the AI model for each template question.
+The AI will generate a unique variation of the question for that specific student (e.g., "What force is required to accelerate a 15 kg block at 4 m/s²?").
+The student sees their unique set of questions and submits their answers in a text field.
+View Results: After grading, students can view their scores and the questions they were asked.
+The AI Core - Question Generation Logic:
+When a student starts an exam, the backend should take the instructor's "Template Question" and "Context."
+It will then send a prompt to an AI model (like GPT-3.5/4). The prompt should be something like: "You are an academic question generator. Based on the following template and context, create a new, unique question of equivalent difficulty. Only change the specific values or the phrasing slightly, but keep the core problem the same. Template: '{template_question}'. Context: '{context}'."
+The AI's response is the unique question shown to the student.
+Technical Stack and Architecture:
+Framework: Next.js (for integrated frontend and backend API routes).
+Language: TypeScript.
+Styling: Tailwind CSS. Design a clean, modern, responsive, and intuitive UI. It must be multi-device compatible.
+Database: Use Replit's built-in Key-Value Database for simplicity to store user data, exams, questions, and submissions. This avoids complex database setup.
+AI Integration: Use a standard AI API (like OpenAI).
+CRITICAL DEPLOYMENT INSTRUCTIONS:
+Environment Variables: Do NOT hardcode the AI API Key. Use Replit Secrets to store the API key. The secret should be named OPENAI_API_KEY. The code must read this key from the environment variables (process.env.OPENAI_API_KEY).
+README File: Create a detailed README.md file. It must explain what the project does and include a "Deployment to Vercel" section. This section must clearly state that the user needs to add OPENAI_API_KEY as an Environment Variable in their Vercel project settings during deployment.
+Example Environment File: Create a file named .env.example in the root directory with the content OPENAI_API_KEY= to show which variables are required.
+Initial Data:
+Please pre-populate the Replit DB with 1 sample instructor, 2 sample students, and 1 sample exam with 2 template questions so the application is immediately testable.
